@@ -1,10 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Home from "./components/home/Home";
 import Navbar from "./components/navbar/Navbar";
-import React, { useContext, useState } from "react";
+import  { useState } from "react";
 import Search from "./components/search/Search";
 import Track from "./components/track/Track";
 

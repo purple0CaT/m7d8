@@ -1,8 +1,7 @@
 import "./style.css";
-import { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 //
-import { Col, Container, Form, FormControl, Row } from "react-bootstrap";
+import { Col, Container, Form,  Row } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";

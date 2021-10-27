@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { Link, RouteComponentProps } from "react-router-dom";
 import "./style.css";
@@ -45,7 +45,7 @@ function Search({ match, setQuery }: Params) {
       <Row>
         {!Loading ? (
           Search.data.map((t: any) => (
-            <Col xs="12" md="3" className="my-1">
+            <Col xs="12" md="3" className="my-1" key={t.id}>
               <div className="search-card">
                 <Link to={`/track/${t.id}`} onClick={() => setQuery("")}>
                   {" "}
