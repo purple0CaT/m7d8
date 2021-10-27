@@ -6,9 +6,8 @@ import "./style.css";
 interface MatchParams {
   Squery: string;
 }
-interface Props extends RouteComponentProps<MatchParams> {}
 
-function Search({ match }: Props) {
+function Search({ match }: RouteComponentProps<MatchParams>) {
   const [Search, setSearch] = useState<any>([]);
   const [Loading, setLoading] = useState(true);
   //
