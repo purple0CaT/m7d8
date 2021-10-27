@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { RouteComponentProps } from "react-router-dom";
+import Song from "../../types/type";
 import "./style.css";
 interface MatchParams {
   trackId: string;
@@ -15,7 +16,7 @@ function Track({ match }: RouteComponentProps<MatchParams>) {
     const url = `${process.env.REACT_APP_URLFETCH}/track/${match.params.trackId}`;
     const res = await fetch(url);
     if (res.ok) {
-      const track = await res.json();
+      const track: Song = await res.json();
       setTrack(track);
       setLoading(false);
     } else {
@@ -126,7 +127,7 @@ function Track({ match }: RouteComponentProps<MatchParams>) {
             </Col>
           </>
         ) : (
-          <Spinner animation="border" className='mx-auto'/>
+          <Spinner animation="border" className="mx-auto" />
         )}
       </Row>
     </Container>

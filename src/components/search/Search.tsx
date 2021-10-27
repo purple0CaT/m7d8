@@ -1,6 +1,7 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { Link, RouteComponentProps } from "react-router-dom";
+import Song from "../../types/type";
 import "./style.css";
 
 interface MatchParams {
@@ -20,7 +21,7 @@ function Search({ match, setQuery }: Params) {
     try {
       const res = await fetch(url);
       if (res.ok) {
-        const data: any = await res.json();
+        const data: Song[] = await res.json();
         setSearch(data);
         setLoading(false);
       } else {
@@ -29,9 +30,11 @@ function Search({ match, setQuery }: Params) {
       }
     } catch (error) {}
   };
+  //
   useEffect(() => {
     fetchSearch(match.params.Squery);
   }, [match.params.Squery]);
+  //
   useEffect(() => {
     if (match.params.Squery) {
       setQuery(match.params.Squery);
