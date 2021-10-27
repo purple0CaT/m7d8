@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { RouteComponentProps } from "react-router-dom";
 import "./style.css";
 interface MatchParams {
@@ -36,7 +36,7 @@ function Track({ match }: RouteComponentProps<MatchParams>) {
       <br />
       <br />
       <Row>
-        {!Loading && (
+        {!Loading ? (
           <>
             <Col xs="12" md="6" className="px-5">
               <img
@@ -125,6 +125,8 @@ function Track({ match }: RouteComponentProps<MatchParams>) {
               </div>{" "}
             </Col>
           </>
+        ) : (
+          <Spinner animation="border" className='mx-auto'/>
         )}
       </Row>
     </Container>

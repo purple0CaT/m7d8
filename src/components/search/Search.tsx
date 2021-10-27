@@ -6,8 +6,11 @@ import "./style.css";
 interface MatchParams {
   Squery: string;
 }
+interface Params extends RouteComponentProps<MatchParams> {
+  setQuery: (val: string) => void;
+}
 
-function Search({ match }: RouteComponentProps<MatchParams>) {
+function Search({ match, setQuery }: Params) {
   const [Search, setSearch] = useState<any>([]);
   const [Loading, setLoading] = useState(true);
   //
@@ -29,17 +32,22 @@ function Search({ match }: RouteComponentProps<MatchParams>) {
   useEffect(() => {
     fetchSearch(match.params.Squery);
   }, [match.params.Squery]);
+  useEffect(() => {
+    if (match.params.Squery) {
+      setQuery(match.params.Squery);
+    }
+  }, []);
   return (
     <Container>
       <br />
       <h5 className="text-muted">...search by: {match.params.Squery}</h5>
       <br />
       <Row>
-        {!Loading &&
+        {!Loading ? (
           Search.data.map((t: any) => (
             <Col xs="12" md="3" className="my-1">
               <div className="search-card">
-                <Link to={`/track/${t.id}`}>
+                <Link to={`/track/${t.id}`} onClick={() => setQuery("")}>
                   {" "}
                   <img className="w-100" src={t.album.cover_big} alt="" />
                   <div className="card-body">
@@ -65,7 +73,10 @@ function Search({ match }: RouteComponentProps<MatchParams>) {
                 </Link>
               </div>
             </Col>
-          ))}
+          ))
+        ) : (
+          <Spinner animation="border" className="mx-auto" />
+        )}
       </Row>
     </Container>
   );
