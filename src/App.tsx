@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
+import Home from "./components/home/Home";
+import Navbar from "./components/navbar/Navbar";
+import React, { useContext } from "react";
+import Search from "./components/search/Search";
+import Track from "./components/track/Track";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact render={(routerProps) => <Home />} />
+          <Route
+            path="/search/:Squery"
+            exact
+            render={(routerProps) => <Search {...routerProps} />}
+          />
+          <Route
+            path="/track/:trackId"
+            exact
+            render={(routerProps) => <Track {...routerProps} />}
+          />
+        </Switch>
+      </Router>
+    </>
   );
 }
 
